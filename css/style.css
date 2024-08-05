@@ -27,10 +27,13 @@ body{
     overflow-wrap: break-word; /* This ensures the text will wrap within the box */
 }
 .historyhint h3{
+    padding: 20px;
     margin:0 auto;
     border:solid 1px black;
     text-align: center;
     color:rgb(0, 0, 0);
+    word-wrap: break-word; /* This ensures the text will wrap within the box */
+    overflow-wrap: break-word; /* This ensures the text will wrap within the box */
 }
 .simple-calculator{
     max-width:655px;
