@@ -7,7 +7,7 @@ body{
 
 }
 .historyhint{
-    font-size: 15px;
+    font-size: 9px;
     background-color:white;
     color:white;
     position:fixed;
@@ -18,10 +18,13 @@ body{
     z-index:1;
 }
 .historyhint h1{
+    padding: 20px;
     margin:0 auto;
     border:solid 1px black;
     text-align: center;
     color:rgb(0, 0, 0);
+    word-wrap: break-word; /* This ensures the text will wrap within the box */
+    overflow-wrap: break-word; /* This ensures the text will wrap within the box */
 }
 .historyhint h3{
     margin:0 auto;
