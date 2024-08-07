@@ -16,6 +16,7 @@ x^y : ^
 𝝿 : p                 
 n! : f             
 other : same          
-    
-![image](https://github.com/user-attachments/assets/8a45c6c5-0743-4ada-87f4-196ee297ea3c)
+
+![image](https://github.com/user-attachments/assets/94654305-8d99-4a0e-882b-153934194537)
+
 
