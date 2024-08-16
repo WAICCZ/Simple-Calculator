@@ -19,13 +19,15 @@ var Fac = document.getElementsByClassName("fac");
 var his = document.getElementsByClassName("history");
 var point = true;
 var fnhist = false;
-const operators2 = /[x÷+\-*\/%(^.]$/; // 正则表达式，用于匹配运算符
-const operators1 = /[x÷+\-*\/%^)!.]$/; // 正则表达式，用于匹配运算符
-const operand = /[1234567890]$/; // 正则表达式，用于匹配运算符
-const dput = /[1234567890\/\-pe.]$/; // 正则表达式，用于匹配运算符
-const islessmul1 = /[S)peD]$/; // 正则表达式，用于匹配运算符
-const islessmul2 = /[fsctla√r]$/; // 正则表达式，用于匹配运算符
-const islessmul3 = /[S(peD]$/; // 正则表达式，用于匹配运算符
+
+const operators2 = /[x÷+\-*\/%(^.]$/; // 正則表達式，用於確認前方位置的元素
+const operators1 = /[x÷+\-*\/%^)!.]$/; // 正則表達式，用於確認後方位置的元素
+const operand = /[1234567890]$/; // 正則表達式，用於確認元素是否為數字
+const dput = /[1234567890\/\-pe.]$/; // 正則表達式，用於鍵盤觸碰事件
+const islessmul1 = /[S)peD]$/; // 正則表達式，用於確認算式是否正確
+const islessmul2 = /[fsctla√r]$/; // 正則表達式，用於確認算式是否正確
+const islessmul3 = /[S(peD]$/; // 正則表達式，用於確認算式是否正確
+
 var mode = 0;
 var Rbracketcan = 0;
 var ANS = 0;
