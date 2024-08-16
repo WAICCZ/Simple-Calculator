@@ -361,6 +361,23 @@ function normalization(text) {
     screen[0].getElementsByTagName("h1")[0].textContent = "0";
     reset = true;
   }
+    if (
+    operand.test(
+      screen[0].getElementsByTagName("h1")[0].textContent[
+        screen[0].getElementsByTagName("h1")[0].textContent.length - 1
+      ]
+    ) &&
+    screen[0].getElementsByTagName("h1")[0].textContent[
+      screen[0].getElementsByTagName("h1")[0].textContent.length - 2
+    ] == "0"
+  ) {
+    screen[0].getElementsByTagName("h1")[0].textContent = screen[0]
+      .getElementsByTagName("h1")[0]
+      .textContent.slice(
+        0,
+        screen[0].getElementsByTagName("h1")[0].textContent.length - 1
+      );
+  }
   let h1element = screen[0].getElementsByTagName("h1")[0];
   let text1 = h1element.textContent;
   if (text1.length >= 2) {
