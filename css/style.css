@@ -200,7 +200,8 @@ td:active{
     .historyhint{
         top:30%;
         width:98%;
-        height: 70%;
+        height: 90%;
+        font-size: 6px;
     }
     .historyhint h1{
         width:300px;
@@ -239,11 +240,12 @@ td:active{
   @media(max-width: 480px){
     .historyhint h1{
         width:100px;
+        height:20px;
         
     }
     .historyhint h3{
         width:100px;
-        
+        height:20px;
     }
     table{
         border-spacing:10px 20px;
