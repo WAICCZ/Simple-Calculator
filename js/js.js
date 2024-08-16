@@ -31,29 +31,8 @@ var Fac = document.getElementsByClassName("fac");
 var his = document.getElementsByClassName("history");
 var point = true;
 var fnhist = false;
-<<<<<<< HEAD
-var h3index = 0;
 
 //按鈕事件
-=======
-
-const operators2 = /[x÷+\-*\/%(^.]$/; // 正則表達式，用於確認前方位置的元素
-const operators1 = /[x÷+\-*\/%^)!.]$/; // 正則表達式，用於確認後方位置的元素
-const operand = /[1234567890]$/; // 正則表達式，用於確認元素是否為數字
-const dput = /[1234567890\/\-pe.]$/; // 正則表達式，用於鍵盤觸碰事件
-const islessmul1 = /[S)peD]$/; // 正則表達式，用於確認算式是否正確
-const islessmul2 = /[fsctla√r]$/; // 正則表達式，用於確認算式是否正確
-const islessmul3 = /[S(peD]$/; // 正則表達式，用於確認算式是否正確
-
-var mode = 0;
-var Rbracketcan = 0;
-var ANS = 0;
-var ANSlist = [0];
-var formulalist = [""];
-var reset = true;
-var p = 3.14159265359;
-var e = 2.71828182846;
->>>>>>> b9b61bf23765fc43b7a226625035683f44a9eaf1
 equal[0].addEventListener("click", eq);
 Inv[0].addEventListener("click", Invert);
 power[0].addEventListener("click", Power);
@@ -363,11 +342,7 @@ function normalization(text) {
     screen[0].getElementsByTagName("h1")[0].textContent = "0";
     reset = true;
   }
-<<<<<<< HEAD
   if (
-=======
-    if (
->>>>>>> b9b61bf23765fc43b7a226625035683f44a9eaf1
     operand.test(
       screen[0].getElementsByTagName("h1")[0].textContent[
         screen[0].getElementsByTagName("h1")[0].textContent.length - 1
@@ -512,20 +487,6 @@ function ce() {
         0,
         screen[0].getElementsByTagName("h1")[0].textContent.length - 2
       );
-  }
-
-  if (
-    screen[0].getElementsByTagName("h1")[0].textContent[
-      screen[0].getElementsByTagName("h1")[0].textContent.length - 1
-    ] == "("
-  ) {
-    Rbracketcan--;
-  } else if (
-    screen[0].getElementsByTagName("h1")[0].textContent[
-      screen[0].getElementsByTagName("h1")[0].textContent.length - 1
-    ] == ")"
-  ) {
-    Rbracketcan++;
   } else if (
     screen[0]
       .getElementsByTagName("h1")[0]
