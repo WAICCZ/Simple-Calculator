@@ -1,43 +1,48 @@
-*{
-    
-}
 body{
+  max-width: 1024px;
   background: url("../img/background.png");
   background-size: cover;
-
+  position:relative;
+  margin:0 auto;
 }
 .historyhint{
     display: none;
     font-size: 9px;
     background-color:white;
+    border-radius: 20px;
+    border:3px solid black;
     color:white;
-    position:fixed;
-    width:100px;
-    height:100%;
-    top:0;
+    position:absolute;
+    width:99%;
+    height:50%;
+    margin:0 auto;
+    top:23%;
     left:0;
     z-index:1;
 }
 .historyhint h1{
     padding: 20px;
     margin:0 auto;
-    border:solid 1px black;
     text-align: center;
     color:rgb(0, 0, 0);
     word-wrap: break-word; /* This ensures the text will wrap within the box */
     overflow-wrap: break-word; /* This ensures the text will wrap within the box */
+    width:600px;
+    
 }
 .historyhint h3{
     padding: 20px;
     margin:0 auto;
-    border:solid 1px black;
+    width:600px;
     text-align: center;
     color:rgb(0, 0, 0);
     word-wrap: break-word; /* This ensures the text will wrap within the box */
     overflow-wrap: break-word; /* This ensures the text will wrap within the box */
+    cursor:pointer;
 }
 .simple-calculator{
     max-width:655px;
+    position: relative;
     text-align:center;
     margin:0 auto;
     border-radius: 10px;
@@ -192,7 +197,19 @@ td:active{
     color:rgb(151, 151, 151);
   }
   @media(max-width: 710px){
-
+    .historyhint{
+        top:30%;
+        width:98%;
+        height: 70%;
+    }
+    .historyhint h1{
+        width:300px;
+        
+    }
+    .historyhint h3{
+        width:300px;
+        
+    }
     .effect
 
     {
@@ -220,6 +237,14 @@ td:active{
     }
   }
   @media(max-width: 480px){
+    .historyhint h1{
+        width:100px;
+        
+    }
+    .historyhint h3{
+        width:100px;
+        
+    }
     table{
         border-spacing:10px 20px;
         padding:0px;

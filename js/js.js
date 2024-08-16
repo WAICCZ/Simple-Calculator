@@ -1,14 +1,26 @@
+//用於調整使用弧度或是角度
 var RD = document.getElementsByClassName("RD");
 var R = RD[0].getElementsByTagName("p")[0];
 var D = RD[0].getElementsByTagName("p")[2];
 RD[0].addEventListener("click", SWRD);
 RadDeg = true;
+
+//用於顯示使用弧度或是角度
 var bc1 = document.getElementsByClassName("border_corner1");
 var bc2 = document.getElementsByClassName("border_corner2");
+
+//用於顯示目前的運算式
 var screen = document.getElementsByClassName("calculator-screen");
+
+//整個計算機
 var calculator = document.getElementsByClassName("simple-calculator");
+
+//按鈕
+//用於反向的按鈕
 var Inv = document.getElementsByClassName("Inv");
+//可以反向的按鈕
 var Invv = document.getElementsByClassName("Invv");
+//所有可以直接貼上內容的按鈕
 var op = document.getElementsByClassName("op");
 var equal = document.getElementsByClassName("equal");
 var power = document.getElementsByClassName("power");
@@ -19,21 +31,9 @@ var Fac = document.getElementsByClassName("fac");
 var his = document.getElementsByClassName("history");
 var point = true;
 var fnhist = false;
-const operators2 = /[x÷+\-*\/%(^.]$/; // 正则表达式，用于匹配运算符
-const operators1 = /[x÷+\-*\/%^)!.]$/; // 正则表达式，用于匹配运算符
-const operand = /[1234567890]$/; // 正则表达式，用于匹配运算符
-const dput = /[1234567890\/\-pe.]$/; // 正则表达式，用于匹配运算符
-const islessmul1 = /[S)peD]$/; // 正则表达式，用于匹配运算符
-const islessmul2 = /[fsctla√r]$/; // 正则表达式，用于匹配运算符
-const islessmul3 = /[S(peD]$/; // 正则表达式，用于匹配运算符
-var mode = 0;
-var Rbracketcan = 0;
-var ANS = 0;
-var ANSlist = [0];
-var formulalist = [""];
-var reset = true;
-var p = 3.14159265359;
-var e = 2.71828182846;
+var h3index = 0;
+
+//按鈕事件
 equal[0].addEventListener("click", eq);
 Inv[0].addEventListener("click", Invert);
 power[0].addEventListener("click", Power);
@@ -42,9 +42,38 @@ CE[0].addEventListener("click", ce);
 pi[0].addEventListener("click", PI);
 Fac[0].addEventListener("click", facadd);
 his[0].addEventListener("click", HisT);
+
+const operators2 = /[x÷+\-*\/%(^.]$/; // 正則表達式，用於確認前方位置的元素
+const operators1 = /[x÷+\-*\/%^)!.]$/; // 正則表達式，用於確認後方位置的元素
+const operand = /[1234567890]$/; // 正則表達式，用於確認元素是否為數字
+const dput = /[1234567890\/\-pe.]$/; // 正則表達式，用於鍵盤觸碰事件
+const islessmul1 = /[S)peD]$/; // 正則表達式，用於確認算式是否正確
+const islessmul2 = /[fsctla√r]$/; // 正則表達式，用於確認算式是否正確
+const islessmul3 = /[S(peD]$/; // 正則表達式，用於確認算式是否正確
+
+//用於紀錄目前是在反向模式或者是正向模式
+var mode = 0;
+//用於紀錄有多少右括號還可以使用
+var Rbracketcan = 0;
+//用於紀錄答案
+var ANS = 0;
+
+//用於記錄算式
+var formulalist = [];
+
+//用來重置輸入
+var reset = true;
+
+//設定pi與e的值
+var p = 3.14159265359;
+var e = 2.71828182846;
+
+//當點擊時直接將按鈕上的元素放上去
 for (let i = 0; i < op.length; i++) {
   op[i].addEventListener("click", directput);
 }
+
+//鍵盤點擊事件
 document.addEventListener("keydown", function (e) {
   if (e.key == "Enter") {
     eq();
@@ -53,213 +82,166 @@ document.addEventListener("keydown", function (e) {
     ce();
   }
   if (dput.test(e.key[0])) {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = e.key;
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "+" || (e.shiftKey && e.key === "=")) {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "+";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "^" || (e.shiftKey && e.key === "^")) {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "^";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "%" || (e.shiftKey && e.key === "%")) {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "%";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "x" || (e.shiftKey && e.key === "x")) {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "x";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "r" || (e.shiftKey && e.key === "r")) {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "√";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "s") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     if (mode === 0) etext.textContent = "sin";
     else etext.textContent = "arcsin";
-    // 創建一個自定義事件
+
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "c") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     if (mode === 0) etext.textContent = "cos";
     else etext.textContent = "arccos";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "t") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     if (mode === 0) etext.textContent = "tan";
     else etext.textContent = "arctan";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "A") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "ANS";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "R") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "RND";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "l") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "log";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "L") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "ln";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.key === "f") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "fac(";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.shiftKey && e.key === "(") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = "(";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
   if (e.shiftKey && e.key === ")") {
-    // 創建一個假的元素來模擬事件觸發
     var etext = document.createElement("p");
     etext.textContent = ")";
 
-    // 創建一個自定義事件
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
-    // 手動調用函數並傳遞事件物件
     directput(event.detail);
   }
 });
@@ -361,6 +343,23 @@ function normalization(text) {
     screen[0].getElementsByTagName("h1")[0].textContent = "0";
     reset = true;
   }
+  if (
+    operand.test(
+      screen[0].getElementsByTagName("h1")[0].textContent[
+        screen[0].getElementsByTagName("h1")[0].textContent.length - 1
+      ]
+    ) &&
+    screen[0].getElementsByTagName("h1")[0].textContent[
+      screen[0].getElementsByTagName("h1")[0].textContent.length - 2
+    ] == "0"
+  ) {
+    screen[0].getElementsByTagName("h1")[0].textContent = screen[0]
+      .getElementsByTagName("h1")[0]
+      .textContent.slice(
+        0,
+        screen[0].getElementsByTagName("h1")[0].textContent.length - 1
+      );
+  }
   let h1element = screen[0].getElementsByTagName("h1")[0];
   let text1 = h1element.textContent;
   if (text1.length >= 2) {
@@ -438,7 +437,6 @@ function eq() {
   formulalist.push(screen[0].getElementsByTagName("h1")[0].textContent);
   screen[0].getElementsByTagName("h1")[0].textContent = result; // 14
   ANS = result;
-  ANSlist.push(result);
   screen[0].getElementsByTagName("h4")[0].textContent = "ANS = " + ANS;
   reset = true;
   var newElement = document.createElement("h3");
@@ -446,12 +444,25 @@ function eq() {
   document.getElementsByClassName("historyhint")[0].appendChild(newElement);
   if (
     document.getElementsByClassName("historyhint")[0].getElementsByTagName("h3")
-      .length > 5
+      .length > 8
   ) {
     var parentElement = document.getElementsByClassName("historyhint")[0];
     var firstH3 = parentElement.getElementsByTagName("h3")[0];
     parentElement.removeChild(firstH3);
   }
+  // 为新元素添加点击事件
+  newElement.addEventListener("click", function (e) {
+    allh3 = document.querySelectorAll("h3");
+    for (let i = 0; i < allh3.length; i++) {
+      allh3[i].style.border = "none";
+    }
+    let A = e.target.textContent.split("=");
+    A[1] = A[1].slice(1);
+    ANS = A[1];
+    screen[0].getElementsByTagName("h4")[0].textContent = "ANS = " + ANS;
+    screen[0].getElementsByTagName("h1")[0].textContent = ANS;
+    e.target.style.border = "1px solid blue";
+  });
 }
 function Power() {
   screen[0].getElementsByTagName("h1")[0].textContent += "^";
@@ -597,36 +608,29 @@ function ce() {
         screen[0].getElementsByTagName("h1")[0].textContent.length - 4
       );
   }
-
   if (screen[0].getElementsByTagName("h1")[0].textContent.length == 0) {
     screen[0].getElementsByTagName("h1")[0].textContent = "0";
     reset = true;
   }
 }
 function PI() {
-  // 創建一個假的元素來模擬事件觸發
   var Pi = document.createElement("p");
   Pi.textContent = "p";
 
-  // 創建一個自定義事件
   var event = new CustomEvent("customEvent", {
     detail: { target: Pi },
   });
 
-  // 手動調用函數並傳遞事件物件
   directput(event.detail);
 }
 function facadd() {
-  // 創建一個假的元素來模擬事件觸發
   var fac = document.createElement("p");
   fac.textContent = "fac(";
 
-  // 創建一個自定義事件
   var event = new CustomEvent("customEvent", {
     detail: { target: fac },
   });
 
-  // 手動調用函數並傳遞事件物件
   directput(event.detail);
 }
 function sin(x) {
