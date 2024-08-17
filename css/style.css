@@ -238,7 +238,15 @@ td:active{
         padding:0px;
     }
   }
+  @media(max-width: 580px){
+    .simple-calculator{
+        font-size: 14px;
+    }
+}
   @media(max-width: 480px){
+    .simple-calculator{
+        font-size: 12px;
+    }
     .historyhint h1{
         width:100px;
         height:20px;
@@ -288,3 +296,13 @@ td:active{
         
       }
   }
+  @media(max-width: 370px){
+    .simple-calculator{
+        font-size: 9px;
+    }
+}
+@media(max-width: 300px){
+    .simple-calculator{
+        font-size: 7px;
+    }
+}
