@@ -80,60 +80,73 @@ document.addEventListener("keydown", function (e) {
   if (e.key == "Backspace") {
     ce();
   }
+  //測試按鈕點擊元素是否屬於可以直接放上顯示的內容
   if (dput.test(e.key[0])) {
     var etext = document.createElement("p");
     etext.textContent = e.key;
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
     directput(event.detail);
   }
-  if (e.key === "+" || (e.shiftKey && e.key === "=")) {
+  if (e.shiftKey && e.key === "=") {
     var etext = document.createElement("p");
     etext.textContent = "+";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
     directput(event.detail);
   }
-  if (e.key === "^" || (e.shiftKey && e.key === "^")) {
+  if (e.shiftKey && e.key === "^") {
     var etext = document.createElement("p");
     etext.textContent = "^";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
     directput(event.detail);
   }
-  if (e.key === "%" || (e.shiftKey && e.key === "%")) {
+  if (e.shiftKey && e.key === "%") {
     var etext = document.createElement("p");
     etext.textContent = "%";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
     directput(event.detail);
   }
-  if (e.key === "x" || (e.shiftKey && e.key === "x")) {
+  if (e.shiftKey && e.key === "x") {
     var etext = document.createElement("p");
     etext.textContent = "x";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
 
     directput(event.detail);
   }
-  if (e.key === "r" || (e.shiftKey && e.key === "r")) {
+  if (e.shiftKey && e.key === "r") {
     var etext = document.createElement("p");
     etext.textContent = "√";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -145,6 +158,8 @@ document.addEventListener("keydown", function (e) {
     if (mode === 0) etext.textContent = "sin";
     else etext.textContent = "arcsin";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -156,6 +171,8 @@ document.addEventListener("keydown", function (e) {
     if (mode === 0) etext.textContent = "cos";
     else etext.textContent = "arccos";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -167,6 +184,8 @@ document.addEventListener("keydown", function (e) {
     if (mode === 0) etext.textContent = "tan";
     else etext.textContent = "arctan";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -177,6 +196,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = "ANS";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -187,6 +208,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = "RND";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -197,6 +220,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = "log";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -207,6 +232,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = "ln";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -217,6 +244,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = "fac(";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -227,6 +256,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = "(";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
@@ -237,6 +268,8 @@ document.addEventListener("keydown", function (e) {
     var etext = document.createElement("p");
     etext.textContent = ")";
 
+    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
+    //因此必須將所有想輸入的字串變成具有target屬性
     var event = new CustomEvent("customEvent", {
       detail: { target: etext },
     });
