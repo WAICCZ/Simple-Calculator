@@ -45,7 +45,7 @@ his[0].addEventListener("click", HisT);
 const operators2 = /[x÷+\-*\/%(^.]$/; // 正則表達式，用於確認前方位置的元素
 const operators1 = /[x÷+\-*\/%^)!.]$/; // 正則表達式，用於確認後方位置的元素
 const operand = /[1234567890]$/; // 正則表達式，用於確認元素是否為數字
-const dput = /[1234567890\/\-pe.]$/; // 正則表達式，用於鍵盤觸碰事件
+const dput = /[1234567890\/\-pe.+^%x()]$/; // 正則表達式，用於鍵盤觸碰事件
 const islessmul1 = /[S)peD]$/; // 正則表達式，用於確認算式是否正確
 const islessmul2 = /[fsctla√r]$/; // 正則表達式，用於確認算式是否正確
 const islessmul3 = /[S(peD]$/; // 正則表達式，用於確認算式是否正確
@@ -93,55 +93,8 @@ document.addEventListener("keydown", function (e) {
 
     directput(event.detail);
   }
-  if (e.shiftKey && e.key === "=") {
-    var etext = document.createElement("p");
-    etext.textContent = "+";
 
-    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
-    //因此必須將所有想輸入的字串變成具有target屬性
-    var event = new CustomEvent("customEvent", {
-      detail: { target: etext },
-    });
-
-    directput(event.detail);
-  }
-  if (e.shiftKey && e.key === "^") {
-    var etext = document.createElement("p");
-    etext.textContent = "^";
-
-    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
-    //因此必須將所有想輸入的字串變成具有target屬性
-    var event = new CustomEvent("customEvent", {
-      detail: { target: etext },
-    });
-
-    directput(event.detail);
-  }
-  if (e.shiftKey && e.key === "%") {
-    var etext = document.createElement("p");
-    etext.textContent = "%";
-
-    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
-    //因此必須將所有想輸入的字串變成具有target屬性
-    var event = new CustomEvent("customEvent", {
-      detail: { target: etext },
-    });
-
-    directput(event.detail);
-  }
-  if (e.shiftKey && e.key === "x") {
-    var etext = document.createElement("p");
-    etext.textContent = "x";
-
-    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
-    //因此必須將所有想輸入的字串變成具有target屬性
-    var event = new CustomEvent("customEvent", {
-      detail: { target: etext },
-    });
-
-    directput(event.detail);
-  }
-  if (e.shiftKey && e.key === "r") {
+  if (e.key === "r") {
     var etext = document.createElement("p");
     etext.textContent = "√";
 
@@ -252,31 +205,8 @@ document.addEventListener("keydown", function (e) {
 
     directput(event.detail);
   }
-  if (e.shiftKey && e.key === "(") {
-    var etext = document.createElement("p");
-    etext.textContent = "(";
-
-    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
-    //因此必須將所有想輸入的字串變成具有target屬性
-    var event = new CustomEvent("customEvent", {
-      detail: { target: etext },
-    });
-
-    directput(event.detail);
-  }
-  if (e.shiftKey && e.key === ")") {
-    var etext = document.createElement("p");
-    etext.textContent = ")";
-
-    //不管是點擊按鈕op事件還是鍵盤事件都要進入directput()這個函式
-    //因此必須將所有想輸入的字串變成具有target屬性
-    var event = new CustomEvent("customEvent", {
-      detail: { target: etext },
-    });
-
-    directput(event.detail);
-  }
 });
+
 document.addEventListener("click", function (event) {
   const rect = calculator[0].getBoundingClientRect();
   const isInDiv =
@@ -290,6 +220,8 @@ document.addEventListener("click", function (event) {
     screen[0].style.boxShadow = "0px 0px 10px 1px white";
   }
 });
+
+//反轉形式
 function Invert() {
   if (mode == 0) {
     Inv[0].style.backgroundColor = "white";
@@ -310,6 +242,8 @@ function Invert() {
     mode = 0;
   }
 }
+
+//轉換為角度形式或是弧度形式
 function SWRD() {
   RadDeg = !RadDeg;
   if (window.getComputedStyle(bc1[0]).display == "block") {
@@ -332,6 +266,7 @@ function SWRD() {
     D.style.color = "white";
   }
 }
+
 function directput(e) {
   if (
     islessmul1.test(
@@ -448,8 +383,6 @@ function normalization(text) {
   if (!operand.test(text1[text1.length - 1])) {
     point = true;
   }
-
-  let text2 = h1element.textContent;
 }
 function eq() {
   if (Rbracketcan > 0) {
@@ -482,7 +415,6 @@ function eq() {
     var firstH3 = parentElement.getElementsByTagName("h3")[0];
     parentElement.removeChild(firstH3);
   }
-  // 为新元素添加点击事件
   newElement.addEventListener("click", function (e) {
     allh3 = document.querySelectorAll("h3");
     for (let i = 0; i < allh3.length; i++) {
