@@ -415,8 +415,13 @@ function eq() {
     var firstH3 = parentElement.getElementsByTagName("h3")[0];
     parentElement.removeChild(firstH3);
   }
+  var allh3 = document.querySelectorAll("h3");
+  for (let i = 0; i < allh3.length - 1; i++) {
+    allh3[i].style.border = "none";
+  }
+  allh3[allh3.length - 1].style.border = "1px solid blue";
   newElement.addEventListener("click", function (e) {
-    allh3 = document.querySelectorAll("h3");
+    var allh3 = document.querySelectorAll("h3");
     for (let i = 0; i < allh3.length; i++) {
       allh3[i].style.border = "none";
     }
