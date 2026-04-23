@@ -1,5 +1,4 @@
 # **Simple-Calculator**
-This is a simple computer whose functions are taken from Google.
 
 keydown:
 
